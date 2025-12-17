@@ -15,3 +15,4 @@ poetry build
 
 echo "✅ Build terminé. Front dans frontend/dist, artefacts Python dans dist/."
 
+poetry run python -m backend.app

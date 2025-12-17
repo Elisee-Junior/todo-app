@@ -21,6 +21,7 @@ ENV/
 .coverage
 .coverage.*
 htmlcov/
+.cache/
 
 # Frontend dependencies and builds
 frontend/node_modules/
