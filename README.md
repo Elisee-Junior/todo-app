@@ -3,37 +3,27 @@
 Application TODO avec backend Flask et frontend Vite/Vue 3 + Tailwind.
 
 ## Prérequis
-- Python 3.10+
-- Node 18+ et npm
-- Poetry (`pip install poetry`) pour le backend
+- Docker + Docker Compose (recommandé)
+- OU : Python 3.10+ ; Node 18+ & npm
 
-## Installation
-- Backend : `poetry install`
-- Frontend : `cd frontend && npm install`
+## Démarrage avec Docker (recommandé)
+- `docker compose up --build`
+- Frontend : http://localhost:8080
+- API : http://localhost:5000 (également proxifiée via le front sur `/api`)
 
-## Développement
-- Lancer l’API : `poetry run python -m backend.app` (port 5000)
-- Lancer le front : `cd frontend && npm run dev` (port 5173, proxy vers l’API)
+## Démarrage en local (sans Docker)
+- Backend : `pip install -r backend/requirements.txt` puis `python backend/app.py` (port 5000)
+- Frontend : `cd frontend && npm install && npm run dev` (port 5173, proxy vers 5000 pour `/api`)
 
 ## Build front pour servir via Flask
 - `cd frontend && npm run build`
-- Relancer l’API : `poetry run python -m backend.app`
+- Lancer le backend : `python backend/app.py`
 - Accès : http://localhost:5000 (assets dans `frontend/dist`)
-
-## Script de build combiné
-- Depuis la racine : `./build.sh`
-- Produit le build front (frontend/dist) et les artefacts Python (dist/)
-
-## Tests
-- Script : `./test.sh` (installe les deps dev et lance `pytest`)
-
-## Build backend (wheel/sdist)
-- `poetry build` (sorties dans `dist/`)
 
 ## API (mémoire volatile)
 - GET /api/todos
 - POST /api/todos { title }
 - PUT /api/todos/:id { title?, completed? }
 - DELETE /api/todos/:id
-- GET /api/health (ajouté sur la branche dev pour vérification rapide)
+- GET /api/health
 
