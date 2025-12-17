@@ -17,7 +17,7 @@ def client():
 
 
 def test_health(client):
-    res = client.get("/api/health")
+    res = client.get("/api/test_ci")
     assert res.status_code == 200
     data = res.get_json()
     assert data["status"] == "ok"
