@@ -1,0 +1,45 @@
+name: Backend tests
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Poetry
+        run: |
+          python -m pip install --upgrade pip
+          pip install poetry
+
+      - name: Install dependencies
+        run: poetry install --with dev
+
+      - name: Start API server
+        run: |
+          nohup poetry run python -m backend.app > backend.log 2>&1 &
+          echo $! > backend.pid
+          sleep 2
+
+      - name: Healthcheck API
+        run: curl --fail http://127.0.0.1:5000/api/health
+
+      - name: Run unit tests
+        run: poetry run pytest
+
+      - name: Stop API server
+        if: always()
+        run: |
+          if [ -f backend.pid ]; then
+            kill "$(cat backend.pid)" || true
+          fi
