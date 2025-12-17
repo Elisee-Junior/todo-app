@@ -25,6 +25,11 @@ def list_todos():
     return jsonify(_todos)
 
 
+@app.get("/api/health")
+def health():
+    return jsonify({"status": "ok", "env": "dev"})
+
+
 @app.post("/api/todos")
 def create_todo():
     data = request.get_json(silent=True) or {}
