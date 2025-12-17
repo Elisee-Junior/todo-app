@@ -28,4 +28,5 @@ Application TODO avec backend Flask et frontend Vite/Vue 3 + Tailwind.
 - POST /api/todos { title }
 - PUT /api/todos/:id { title?, completed? }
 - DELETE /api/todos/:id
+- GET /api/health (ajouté sur la branche dev pour vérification rapide)
 
