@@ -20,6 +20,13 @@ Application TODO avec backend Flask et frontend Vite/Vue 3 + Tailwind.
 - Relancer l’API : `poetry run python -m backend.app`
 - Accès : http://localhost:5000 (assets dans `frontend/dist`)
 
+## Script de build combiné
+- Depuis la racine : `./build.sh`
+- Produit le build front (frontend/dist) et les artefacts Python (dist/)
+
+## Tests
+- Script : `./test.sh` (installe les deps dev et lance `pytest`)
+
 ## Build backend (wheel/sdist)
 - `poetry build` (sorties dans `dist/`)
 
